@@ -35,3 +35,15 @@ def FindM(BotFrac, TopFrac):
 
 def FindB(M, MeanA, MeanB):
     return(MeanB-(M*MeanA))
+
+def findY(m, b, Array):
+    CompleatArray = []
+    for x in Array:
+        CompleatArray.append((m*x)+b)
+    return(CompleatArray)
+
+def SubtractTwoArrays(ArrayA, ArrayB):
+    CompleatArray = []
+    for i, j in zip(ArrayA, ArrayB):
+        CompleatArray.append(i - j)
+    return(CompleatArray)
