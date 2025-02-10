@@ -38,8 +38,8 @@ def FindB(M, MeanA, MeanB):
 
 def findY(m, b, Array):
     CompleatArray = []
-    for x in Array:
-        CompleatArray.append((m*x)+b)
+    for i in Array:
+        CompleatArray.append((m*i)+b)
     return(CompleatArray)
 
 def SubtractTwoArrays(ArrayA, ArrayB):
