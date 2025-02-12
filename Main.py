@@ -1,8 +1,46 @@
 import LinRegMath
 
+import csv
+
 def main():
-    ArrayX = [1.5, 2, 2.5, 3, 3.5]
-    ArrayY = [0.8, 1.3, 1.5, 1.9, 2.5]
+    ArrayX, ArrayY = ReadCSVFile()
+    FindLineyerEquesion(ArrayX, ArrayY)
+
+def ReadCSVFile():
+    xdata = False
+    ydata = False
+    skip = False
+    ArrayX = []
+    ArrayY = []
+    with open("input.csv", "r") as f:
+        data = csv.reader(f)
+        for line in data:
+            for i in line:
+                print (i)
+                if i == "//":
+                    if skip == True:
+                        skip = False
+                    else:
+                        skip = True
+                elif skip != True:
+                    if i.isalpha() == True:
+                        if i == "x":
+                            if skip != True:
+                                xdata = True
+                                ydata = False
+                        elif i == "y":
+                            if skip != True:
+                                xdata = False
+                                ydata = True
+                    else:
+                        i = float(i)
+                        if xdata == True:
+                            ArrayX.append(i)
+                        elif ydata == True:
+                            ArrayY.append(i)
+    return(ArrayX,ArrayY)
+
+def FindLineyerEquesion(ArrayX, ArrayY):
     MeanX = LinRegMath.Mean(ArrayX)
     MeanY = LinRegMath.Mean(ArrayY)
     SubArrayX = LinRegMath.NumSubMean(ArrayX, MeanX)
