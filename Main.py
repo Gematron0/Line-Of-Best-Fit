@@ -3,6 +3,7 @@ import LinRegMath
 
 ### libary imports ###
 import csv
+import os
 
 def main(): # main function
     ArrayX, ArrayY = ReadCSVFile()
@@ -15,10 +16,20 @@ def ReadCSVFile():
     skip = False
     ArrayX = []
     ArrayY = []
+    NumOfTotalChericters = 0
+    NumOfChericters = 0
     with open("input.csv", "r") as f: # read CSV file
         data = csv.reader(f)
         for line in data:
             for i in line: # each chericter inside of a CSV file
+                NumOfTotalChericters += 1
+    with open("input.csv", "r") as f: # read CSV file
+        data = csv.reader(f)
+        for line in data:
+            for i in line: # each chericter inside of a CSV file
+                NumOfChericters += 1
+                print(f"{NumOfChericters}/{NumOfTotalChericters}")
+                os.system('cls' if os.name == 'nt' else 'clear')
                 if i == "//": # checking if its requerd to skip some section of reading
                     if skip == True:
                         skip = False
