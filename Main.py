@@ -16,7 +16,6 @@ def ReadCSVFile():
         data = csv.reader(f)
         for line in data:
             for i in line:
-                print (i)
                 if i == "//":
                     if skip == True:
                         skip = False
