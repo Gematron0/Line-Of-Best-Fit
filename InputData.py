@@ -51,9 +51,9 @@ def ReadCSVFile(FileName):
     return(ArrayX,ArrayY)
 
 def AddManualData():
+    ArrayX = []
+    ArrayY = []
     while True:
-        ArrayX = []
-        ArrayY = []
         GUI.InputUI(1, 2, 1)
         print(ArrayX)
         print(ArrayY)
@@ -69,6 +69,7 @@ def AddManualData():
         for i in procesedinput:
             print (i)
             if i[0] == "+":
+                print(i[1])
                 print ("is +")
                 if i[1] == "x":
                     value = int(i[2:])
@@ -78,4 +79,3 @@ def AddManualData():
                     value = int(i[2:])
                     print(f"Adding {value} to ArrayY")
                     ArrayY.append(value)
-        time.sleep(5)
