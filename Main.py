@@ -1,14 +1,37 @@
 ### File imports ###
 import LinRegMath
+import GUI
+import InputData
 
 ### libary imports ###
-import csv
-import os
-import matplotlib.pyplot as plt
-import numpy as np
+import csv #read csv files
+import os # clear the colsol
+import matplotlib.pyplot as plt # plots
+import numpy as np # math
+from colorama import Fore, Back, Style #colloring concol
+from colorama import init
+init(autoreset=True)
 
 def main(): # main function
-    ArrayX, ArrayY = ReadCSVFile()
+    while True:
+        GUI.clearConsole()
+        GUI.InputUI(1, 2, 1)
+        print(Fore.GREEN + f"HOW WOULD YOU LIKE TO INPUT DATA")
+        print(f"1: read form a CSV file")
+        print(f"2: manualy input data")
+        GUI.InputUI(1, 2, 2)
+        x = GUI.InputUI(1, 2, 3)
+        if int(x) == 1:
+            GUI.InputUI(2, 2, 1)
+            print(Fore.GREEN + f"INPUT THE CSV FILE NAME")
+            GUI.InputUI(2, 2, 2)
+            FileName = GUI.InputUI(2, 2, 3)
+            ArrayX, ArrayY = InputData.ReadCSVFile(FileName)
+        if int(x) == 2:
+            InputData.AddManualData()
+
+
+    ArrayX, ArrayY = InputData.ReadCSVFile()
     m, b = FindLineyerEquesion(ArrayX, ArrayY)
     plot(ArrayX, ArrayY, m, b)
 
@@ -22,50 +45,6 @@ def plot(ArrayX, ArrayY, m, b):
     plt.ylabel('y - axis')
     plt.show()
 
-# # # read a CSV file, retures two arracys
-def ReadCSVFile(): 
-    xdata = False
-    ydata = False
-    skip = False
-    ArrayX = []
-    ArrayY = []
-    NumOfTotalChericters = 0
-    NumOfChericters = 0
-    with open("input.csv", "r") as f: # read CSV file
-        data = csv.reader(f)
-        for line in data:
-            for i in line: # each chericter inside of a CSV file
-                NumOfTotalChericters += 1
-    with open("input.csv", "r") as f: # read CSV file
-        data = csv.reader(f)
-        for line in data:
-            for i in line: # each chericter inside of a CSV file
-                NumOfChericters += 1
-                print(f"{NumOfChericters}/{NumOfTotalChericters}")
-                os.system('cls' if os.name == 'nt' else 'clear')
-                if i == "//": # checking if its requerd to skip some section of reading
-                    if skip == True:
-                        skip = False
-                    else:
-                        skip = True
-                elif skip != True:
-                    if i.isalpha() == True: # checking if the data shuld be added to the X or Y acesses arrays
-                        if i == "x":
-                            if skip != True:
-                                xdata = True
-                                ydata = False
-                        elif i == "y":
-                            if skip != True:
-                                xdata = False
-                                ydata = True
-                    else:
-                        i = float(i) # converting the data and adding it to the array
-                        if xdata == True:
-                            ArrayX.append(i)
-                        elif ydata == True:
-                            ArrayY.append(i)
-    return(ArrayX,ArrayY)
-
 # # # find the lineyer requestion function
 def FindLineyerEquesion(ArrayX, ArrayY):
     MeanX = LinRegMath.Mean(ArrayX) # finding the mean
@@ -78,7 +57,7 @@ def FindLineyerEquesion(ArrayX, ArrayY):
     TopFrac = LinRegMath.SumAnArray(TopFracArray)
     m = LinRegMath.FindM(BotFrac, TopFrac) # find m and b for the functiuon
     b = LinRegMath.FindB(m, MeanX, MeanY)
-    print(f"y={m}x+{b}") # printing the m and b
+    print(Fore.RED + f"y={m}x+{b}") # printing the m and b
     SolveForY = LinRegMath.findY(m, b, ArrayX) # can take any y=mx+b equastion and find the y from it, as an array
     SolvedYSubY = LinRegMath.SubtractTwoArrays(SolveForY, ArrayY) # subtracts the original y from the resut
     SqaredSolvedYSubY = LinRegMath.SquaredArray(SolvedYSubY) # squaring the array
