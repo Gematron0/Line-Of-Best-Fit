@@ -4,10 +4,23 @@ import LinRegMath
 ### libary imports ###
 import csv
 import os
+import matplotlib.pyplot as plt
+import numpy as np
 
 def main(): # main function
     ArrayX, ArrayY = ReadCSVFile()
-    FindLineyerEquesion(ArrayX, ArrayY)
+    m, b = FindLineyerEquesion(ArrayX, ArrayY)
+    plot(ArrayX, ArrayY, m, b)
+
+# # # producing a plot
+def plot(ArrayX, ArrayY, m, b):
+    x = np.linspace(min(ArrayX),max(ArrayX),100)
+    y = m*x+b
+    plt.scatter(ArrayX, ArrayY, label= "stars", color= "green", marker= "*", s=30)
+    plt.plot(x, y, '-r')
+    plt.xlabel('x - axis')
+    plt.ylabel('y - axis')
+    plt.show()
 
 # # # read a CSV file, retures two arracys
 def ReadCSVFile(): 
@@ -71,6 +84,7 @@ def FindLineyerEquesion(ArrayX, ArrayY):
     SqaredSolvedYSubY = LinRegMath.SquaredArray(SolvedYSubY) # squaring the array
     RSS = LinRegMath.SumAnArray(SqaredSolvedYSubY) # adding the array together
     print(f"RSS: {RSS}")
+    return(m, b)
 
     
 
