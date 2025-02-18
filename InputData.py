@@ -8,12 +8,10 @@ import time
 init(autoreset=True)
 
 # # # read a CSV file, retures two arracys
-def ReadCSVFile(FileName): 
+def ReadCSVFile(FileName, ArrayX, ArrayY): 
     xdata = False
     ydata = False
     skip = False
-    ArrayX = []
-    ArrayY = []
     NumOfTotalChericters = 0
     NumOfChericters = 0
     with open(f"{FileName}.csv", "r") as f: # read CSV file
@@ -56,9 +54,9 @@ def AddManualData(ArrayX, ArrayY):
         print(ArrayX)
         print(ArrayY)
         print(f"to add infomration use the following commands in order")
-        print(f"(+/-); to or remove data from the (x acess/ y acess)")
+        print(f"(+/-); to add or subtract enteys/numbers)")
         print(f"(x/y); to add this data to the (x acess/ y acess)")
-        print(f"(#/#); for waht avlue to add to this acesses (x acess/ y acess)")
+        print(f"(##); add the numebr, another number, another number")
         print(f"(+x23,56 -y63,-12); is an example")
         print(f"x.CLEAR will creat the array")
         print(f"0 or DONE will send you back")

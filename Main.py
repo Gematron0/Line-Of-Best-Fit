@@ -15,6 +15,7 @@ init(autoreset=True)
 def main(): # main function
     ArrayX = []
     ArrayY = []
+    Calculation = False
     while True:
         GUI.clearConsole()
         GUI.InputUI(1, 2, 1)
@@ -23,22 +24,39 @@ def main(): # main function
         print(f"Y ACESS: {ArrayY}")
         print(Fore.GREEN + f"HOW WOULD YOU LIKE TO INPUT DATA")
         print(f"1: read form a CSV file")
-        print(f"2: manualy input data")
+        if len(ArrayX) != 0 or len(ArrayY) != 0:
+            print("2: add another CSV file")
+        print(f"3: manualy input/ edit data")
+        if len(ArrayX) != 0 and len(ArrayY) != 0:
+            print(f"4: clear the arrays")
+            print(f"5: go to calculater screen")
+        print(f"0: exit the program")
         GUI.InputUI(1, 2, 2)
         x = GUI.InputUI(1, 2, 3)
-        if int(x) == 1:
+        if int(x) == 1 or int(x) == 2:
             GUI.InputUI(2, 2, 1)
-            print(Fore.GREEN + f"INPUT THE CSV FILE NAME")
+            print(Fore.GREEN + f"INPUT THE CSV FILE NAME; OR PRESS 0 TO EXIT")
             GUI.InputUI(2, 2, 2)
             FileName = GUI.InputUI(2, 2, 3)
-            ArrayX, ArrayY = InputData.ReadCSVFile(FileName)
-        if int(x) == 2:
+            if FileName != "0":
+                ArrayX, ArrayY = InputData.ReadCSVFile(FileName, ArrayX, ArrayY)
+
+        if int(x) == 3:
             ArrayX, ArrayY = InputData.AddManualData(ArrayX, ArrayY)
 
+        if int(x) == 4:
+            GUI.InputUI(2, 2, 1)
+            print(Fore.RED + f"YOU ARE ABOUT TO DELET BOTH ARRAYS; ARE OYU SHURE (Y/n)")
+            GUI.InputUI(2, 2, 2)
+            z = GUI.InputUI(2, 2, 3)
+            if z == "Y":
+                ArrayX.clear()
+                ArrayY.clear()
 
-    ArrayX, ArrayY = InputData.ReadCSVFile()
-    m, b = FindLineyerEquesion(ArrayX, ArrayY)
-    plot(ArrayX, ArrayY, m, b)
+        if int(x) == 5:
+            Calculation = True
+            m, b = FindLineyerEquesion(ArrayX, ArrayY)
+            plot(ArrayX, ArrayY, m, b)
 
 # # # producing a plot
 def plot(ArrayX, ArrayY, m, b):
