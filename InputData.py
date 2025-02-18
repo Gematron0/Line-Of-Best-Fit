@@ -61,7 +61,7 @@ def AddManualData():
         print(f"(+/-); to or remove data from the (x acess/ y acess)")
         print(f"(x/y); to add this data to the (x acess/ y acess)")
         print(f"(#/#); for waht avlue to add to this acesses (x acess/ y acess)")
-        print(f"(+x23); is an example")
+        print(f"(+x23,56 -y63,-12); is an example")
         GUI.InputUI(1, 2, 2)
         input = GUI.InputUI(3, 3, 3)
 
@@ -69,13 +69,71 @@ def AddManualData():
         for i in procesedinput:
             print (i)
             if i[0] == "+":
-                print(i[1])
-                print ("is +")
                 if i[1] == "x":
-                    value = int(i[2:])
-                    print(f"Adding {value} to ArrayX")
-                    ArrayX.append(value)
-                if i[1] == "y":
-                    value = int(i[2:])
-                    print(f"Adding {value} to ArrayY")
-                    ArrayY.append(value)
+                    value = i[2:]
+                    procesedvalue = value.split(',')
+                    for x in procesedvalue:
+                        x = int(x)
+                        print(f"Adding {x} to ArrayX")
+                        ArrayX.append(x)
+                elif i[1] == "y":
+                    value = i[2:]
+                    procesedvalue = value.split(',')
+                    for x in procesedvalue:
+                        x = int(x)
+                        print(f"Adding {x} to ArrayY")
+                        ArrayY.append(x)
+                elif i[1] == "xy" or i[1] == "yx":
+                    value = i[2:]
+                    procesedvalue = value.split(',')
+                    for x in procesedvalue:
+                        x = int(x)
+                        print(f"Adding {x} to ArrayX and Y")
+                        ArrayX.append(x)
+                        ArrayY.append(x)
+            elif i[0] == "-":
+                print(i[1:2])
+                if i[1:3] == "xi":
+                    value = i[3:]
+                    procesedvalue = value.split(',')
+                    for x in procesedvalue:
+                        print(f"removing index {x} from ArrayX")
+                        x = int(x)
+                        ArrayX.pop(x)
+                elif i[1:3] == "yi":
+                    value = i[3:]
+                    procesedvalue = value.split(',')
+                    for x in procesedvalue:
+                        print(f"removing index {x} from ArrayY")
+                        x = int(x)
+                        ArrayY.pop(x)
+                elif i[1:4] == "xyi":
+                    value = i[4:]
+                    procesedvalue = value.split(',')
+                    for x in procesedvalue:
+                        print(f"removing index {x} from ArrayX and Y")
+                        x = int(x)
+                        ArrayX.pop(x)
+                        ArrayY.pop(x)
+                elif i[1:4] == "yxi":
+                    value = i[4:]
+                    procesedvalue = value.split(',')
+                    for x in procesedvalue:
+                        print(f"removing index {x} from ArrayY and X")
+                        x = int(x)
+                        ArrayY.pop(x)
+                        ArrayX.pop(x)
+                elif i[1] == "x":
+                    value = i[2:]
+                    procesedvalue = value.split(',')
+                    for x in procesedvalue:
+                        x = int(x)
+                        print(f"removing {x} from ArrayX")
+                        ArrayX.remove(x)
+                elif i[1] == "y":
+                    value = i[2:]
+                    procesedvalue = value.split(',')
+                    for x in procesedvalue:
+                        x = int(x)
+                        print(f"removing {x} from ArrayY")
+                        ArrayY.remove(x)
