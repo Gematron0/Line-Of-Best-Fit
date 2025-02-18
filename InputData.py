@@ -97,14 +97,14 @@ def AddManualData(ArrayX, ArrayY):
                     procesedvalue = value.split(',')
                     for x in procesedvalue:
                         print(f"removing index {x} from ArrayX")
-                        x = float(x)
+                        x = int(x)
                         ArrayX.pop(x)
                 elif i[1:3] == "yi":
                     value = i[3:]
                     procesedvalue = value.split(',')
                     for x in procesedvalue:
                         print(f"removing index {x} from ArrayY")
-                        x = float(x)
+                        x = int(x)
                         ArrayY.pop(x)
 
                 elif i[1:4] == "xyi":
@@ -112,7 +112,7 @@ def AddManualData(ArrayX, ArrayY):
                     procesedvalue = value.split(',')
                     for x in procesedvalue:
                         print(f"removing index {x} from ArrayX and Y")
-                        x = float(x)
+                        x = int(x)
                         ArrayX.pop(x)
                         ArrayY.pop(x)
                 elif i[1:4] == "yxi":

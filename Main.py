@@ -64,6 +64,7 @@ def plot(ArrayX, ArrayY, m, b):
     y = m*x+b
     plt.scatter(ArrayX, ArrayY, label= "stars", color= "green", marker= "*", s=30)
     plt.plot(x, y, '-r')
+    plt.grid(True)
     plt.xlabel('x - axis')
     plt.ylabel('y - axis')
     plt.show()
