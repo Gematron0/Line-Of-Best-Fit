@@ -31,7 +31,7 @@ def ReadCSVFile(FileName, ArrayX, ArrayY):
                     else:
                         skip = True
                 elif skip != True:
-                    if i.isalpha() == True: # checking if the data shuld be added to the X or Y acesses arrays
+                    if i.isalpha() == True: # checking if the data shuld be added to the X or Y arrays
                         if i == "x":
                             if skip != True:
                                 xdata = True
@@ -48,6 +48,7 @@ def ReadCSVFile(FileName, ArrayX, ArrayY):
                             ArrayY.append(i)
     return(ArrayX,ArrayY)
 
+# # # lets users to add manul data
 def AddManualData(ArrayX, ArrayY):
     while True:
         GUI.InputUI(1, 2, 1)
