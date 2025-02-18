@@ -13,9 +13,14 @@ from colorama import init
 init(autoreset=True)
 
 def main(): # main function
+    ArrayX = []
+    ArrayY = []
     while True:
         GUI.clearConsole()
         GUI.InputUI(1, 2, 1)
+        print(Fore.GREEN + f"YOUR CURRENT DATA")
+        print(f"X ACESS: {ArrayX}")
+        print(f"Y ACESS: {ArrayY}")
         print(Fore.GREEN + f"HOW WOULD YOU LIKE TO INPUT DATA")
         print(f"1: read form a CSV file")
         print(f"2: manualy input data")
@@ -28,7 +33,7 @@ def main(): # main function
             FileName = GUI.InputUI(2, 2, 3)
             ArrayX, ArrayY = InputData.ReadCSVFile(FileName)
         if int(x) == 2:
-            InputData.AddManualData()
+            ArrayX, ArrayY = InputData.AddManualData(ArrayX, ArrayY)
 
 
     ArrayX, ArrayY = InputData.ReadCSVFile()
